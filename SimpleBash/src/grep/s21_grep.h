@@ -28,11 +28,17 @@ typedef struct {
     char name[BUFSIZ];
 } parametr;
 
+// typedef struct  {
+//     regoff_t rm_so;
+//     regoff_t rm_eo;
+// } regmatch_t;
+
 void find_options(int argc, char **argv, flags *opt, parametr *bufpar);
 void read_file(char *name_file, flags *opt, parametr *bufpar);
 int pars_flag(int argc, char **argv, flags *opt);
 void print_file(char *name_file, flags *opt);
 void flag_n(int ns, flags *opt);
 void flag_f(char *name_file, flags *opt, parametr *bufpar);
+void flag_o (char *str, flags *opt, parametr *bufpar);
 
 #endif  // SRC_GREP_S21_GREP_H_

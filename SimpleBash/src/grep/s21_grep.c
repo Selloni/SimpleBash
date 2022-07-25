@@ -34,23 +34,7 @@ void find_options(int argc, char **argv, flags *opt, parametr *bufpar) {
     }
 }
 
-// void flag_0 (char *str, flags *opt, parametr *bufpar) {
-    //     if (opt->fo) {
-    //         regex_t regex;
-    //         regmatch_t math[1];
-    //         for (int l = 0; l < fl._count; l++) {
-    //             regcomp(&regex, bufpar[0].name, (opt->fi) ? REG_ICASE : 0);
-    //             while ((regexec(&regex, str, 1, math, 0)) == 0) {
-    //             for (int x = (int)math[0].rm_so; x < (int)math[0].rm_eo; x++) {
-    //                 printf("%c", str[x]);
-    //             }
-    //             str += (int)math[0].rm_eo;  ////////
-    //             printf("\n");
-    //             regfree(&regex);
-    //             }
-    //         }
-    // }
-// }
+
 
 void read_file(char *name_file, flags *opt, parametr *bufpar) {
     FILE *file;
@@ -81,13 +65,14 @@ void read_file(char *name_file, flags *opt, parametr *bufpar) {
             regfree(&regex);
             if (!success) {
                 opt->count_tru++;
-                if (!opt->fl && !opt->fv && !opt->fc) {
+                if (!opt->fl && !opt->fv && !opt->fc && !opt->fo) {
                     // if(opt->flag_0 == 0) {//  ограничение на вход в  if когда есть флаги
                     print_file(name_file, opt);
                     flag_n(ns, opt);
                     printf("%s", str);
                     // }
                 }
+                flag_o(str, opt, bufpar);                
             }
             if (success) {
                 opt->count_false++;
@@ -102,8 +87,9 @@ void read_file(char *name_file, flags *opt, parametr *bufpar) {
                     }
                 }
             }
-            ns++;  // count lines
+            ns++;
         }
+        flag_o(str, opt, bufpar);
         if (opt->fc) {
             if (opt->fv) {
                 print_file(name_file, opt);
@@ -125,6 +111,29 @@ void read_file(char *name_file, flags *opt, parametr *bufpar) {
     }
     fclose(file);
 }
+
+
+
+void flag_o (char *str, flags *opt, parametr *bufpar) {
+        if (opt->fo && !opt->fc && !opt->fv) {
+            regex_t regex;
+            regmatch_t math[1];
+            int count = strlen(str);
+            for (int l = 0; l < count; l++) {
+                regcomp(&regex, bufpar[0].name, (opt->fi) ? REG_ICASE : 0);
+                while ((regexec(&regex, str, 1, math, 0)) == 0) {
+                for (int x = (int)math[0].rm_so; x < (int)math[0].rm_eo; x++) {
+                    printf("%c", str[x]);
+                }
+                str += (int)math[0].rm_eo;  ////////
+                printf("\n");
+                regfree(&regex);
+                }
+            }
+    }
+}
+
+
 
 void flag_f(char *name_file, flags *opt, parametr *bufpar) {
     if (opt->ff) {
@@ -148,6 +157,7 @@ void flag_f(char *name_file, flags *opt, parametr *bufpar) {
         }
     }
 }
+
 
 void print_file(char *name_file, flags *opt) {
     if (opt->severalf == 1 && !opt->fh && !opt->fl) {
