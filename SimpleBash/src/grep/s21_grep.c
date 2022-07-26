@@ -72,7 +72,7 @@ void read_file(char *name_file, flags *opt, parametr *bufpar) {
                     printf("%s", str);
                     // }
                 }
-                flag_o(str, opt, bufpar);                
+                flag_o(str, opt, bufpar);
             }
             if (success) {
                 opt->count_false++;
@@ -114,7 +114,7 @@ void read_file(char *name_file, flags *opt, parametr *bufpar) {
 
 
 
-void flag_o (char *str, flags *opt, parametr *bufpar) {
+void flag_o(char *str, flags *opt, parametr *bufpar) {
         if (opt->fo && !opt->fc && !opt->fv) {
             regex_t regex;
             regmatch_t math[1];

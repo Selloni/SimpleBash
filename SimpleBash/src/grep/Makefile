@@ -10,9 +10,10 @@ s21_grep : s21_grep.c
 debug : s21_grep.c 
 	gcc $(FLAG) s21_grep.c -g
 
-test : checks
+sh : 
 	sh run.sh
-	
+
+test : sh checks
 
 clean : 
 	rm -rf *.o s21_grep *.out s21_grep.txt grep.txt

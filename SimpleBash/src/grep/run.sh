@@ -45,7 +45,7 @@ grep -ie options s21_grep.c > grep.txt
 diff -s s21_grep.txt grep.txt
 rm s21_grep.txt grep.txt
 
-./s21_grep -c options s21_grep.c > s21_grep.txt
+./s21_grep -sc options s21_grep.c > s21_grep.txt
 grep -c options s21_grep.c > grep.txt
 diff -s s21_grep.txt grep.txt
 rm s21_grep.txt grep.txt
@@ -85,17 +85,17 @@ grep -s options s21_grep.c > grep.txt
 diff -s s21_grep.txt grep.txt
 rm s21_grep.txt grep.txt
 
-# ./s21_grep -o flags s21_grep.c > s21_grep.txt
-# grep -o flags s21_grep.c > grep.txt
-# diff -s s21_grep.txt grep.txt
-# rm s21_grep.txt grep.txt
-
-./s21_grep -iv options s21_grep.c > s21_grep.txt
-grep -iv options s21_grep.c > grep.txt
+./s21_grep -o flags s21_grep.c > s21_grep.txt
+grep -o flags s21_grep.c > grep.txt
 diff -s s21_grep.txt grep.txt
 rm s21_grep.txt grep.txt
 
-./s21_grep -in options s21_grep.c > s21_grep.txt
-grep -in options s21_grep.c > grep.txt
+./s21_grep -c int s21_grep.c > s21_grep.txt
+grep -c int s21_grep.c > grep.txt
+diff -s s21_grep.txt grep.txt
+rm s21_grep.txt grep.txt
+
+./s21_grep -vc int s21_grep.c > s21_grep.txt
+grep -vc int s21_grep.c > grep.txt
 diff -s s21_grep.txt grep.txt
 rm s21_grep.txt grep.txt

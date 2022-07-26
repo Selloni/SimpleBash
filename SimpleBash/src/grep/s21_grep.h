@@ -1,5 +1,5 @@
-#ifndef SRC_GREP_S21_GREP_H_
-#define SRC_GREP_S21_GREP_H_
+#ifndef SIMPLEBASH_SRC_GREP_S21_GREP_H_
+#define SIMPLEBASH_SRC_GREP_S21_GREP_H_
 
 #include <stdio.h>
 #include <string.h>
@@ -39,6 +39,6 @@ int pars_flag(int argc, char **argv, flags *opt);
 void print_file(char *name_file, flags *opt);
 void flag_n(int ns, flags *opt);
 void flag_f(char *name_file, flags *opt, parametr *bufpar);
-void flag_o (char *str, flags *opt, parametr *bufpar);
+void flag_o(char *str, flags *opt, parametr *bufpar);
 
-#endif  // SRC_GREP_S21_GREP_H_
+#endif  //  SIMPLEBASH_SRC_GREP_S21_GREP_H_
